@@ -3,51 +3,66 @@ import { useState } from "react";
 const TaskForm = ({ addTask }) => {
   const [newTask, setNewTask] = useState({
     title: "",
-    category: "",
+    category: "Work",
     dueDate: "",
   });
 
   return (
-    <div className="flex flex-col w-96 h-auto gap-4 p-4 m-4 bg-blue-400 rounded-xl">
-      <h2 className="text-lg">Add Task</h2>
-      <input
-        type="text"
-        placeholder="Task Title"
-        value={newTask.title}
-        onChange={(e) => setNewTask({ ...newTask, title: e.target.value })}
-        className="p-2 border border-black rounded-lg"
-      />
-      <select
-        value={newTask.category}
-        onChange={(e) => setNewTask({ ...newTask, category: e.target.value })}
-        className="p-2 border border-black rounded-lg"
-      >
-        <option value="Low">Work</option>
-        <option value="Medium">Personal</option>
-        <option value="High">Health</option>
-        <option value="High">Education</option>
-        <option value="High">Hobby</option>
-        <option value="High">Household</option>
-        <option value="High">Finance</option>
-      </select>
-      <input
-        type="date"
-        value={newTask.dueDate}
-        onChange={(e) => setNewTask({ ...newTask, dueDate: e.target.value })}
-        className="p-2 border border-black rounded-lg"
-      />
+    <div className="flex flex-col w-96 h-auto gap-4 p-4 m-8 bg-gradient-to-br from-blue-300 to-blue-600 rounded-3xl">
+      <h2 className="text-3xl font-bold ml-4 my-2">Add Task</h2>
+      <div className="w-72 flex flex-col gap-4">
+        <div className="flex items-center justify-between gap-4">
+          <label htmlFor="title">Task: </label>
+          <input
+            type="text"
+            placeholder="Enter Task"
+            value={newTask.title}
+            onChange={(e) => setNewTask({ ...newTask, title: e.target.value })}
+            className="p-2 border w-48 border-black rounded-lg shadow-lg hover:shadow-2xl"
+          />
+        </div>
+        <div className="flex items-center justify-between gap-4">
+          <label htmlFor="category">Category: </label>
+          <select
+            value={newTask.category}
+            onChange={(e) =>
+              setNewTask({ ...newTask, category: e.target.value })
+            }
+            className="p-2 border w-48 border-black rounded-lg shadow-lg hover:shadow-2xl"
+          >
+            <option value="Work">Work</option>
+            <option value="Personal">Personal</option>
+            <option value="Health">Health</option>
+            <option value="Education">Education</option>
+            <option value="Hobby">Hobby</option>
+            <option value="Household">Household</option>
+            <option value="Finance">Finance</option>
+          </select>
+        </div>
+        <div className="flex items-center justify-between gap-4">
+          <label htmlFor="dueDate">Due Date: </label>
+          <input
+            type="date"
+            value={newTask.dueDate}
+            onChange={(e) =>
+              setNewTask({ ...newTask, dueDate: e.target.value })
+            }
+            className="p-2 border w-48 border-black rounded-lg shadow-lg hover:shadow-2xl "
+          />
+        </div>
+      </div>
       <button
         onClick={() => {
           addTask(newTask);
           setNewTask({
             title: "",
-            category: "",
+            category: "Work",
             dueDate: "",
           });
         }}
-        className="p-2 w-28 text-white bg-black rounded-lg hover:bg-gray-800"
+        className="p-2 w-28 text-white mx-2 mt-2 mb-4 bg-black rounded-lg hover:bg-gray-800"
       >
-        Add Task
+        + Add Task
       </button>
     </div>
   );
